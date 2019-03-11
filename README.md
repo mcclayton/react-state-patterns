@@ -4,7 +4,7 @@ Tiny utility package for easily creating React state patterns.
 # Examples
 
 ## fromHook
-```javascript
+```jsx
 import { fromHook } from 'react-state-patterns';
 
 // Create the state patterns from a custom React state hook.
@@ -22,7 +22,7 @@ const Counter = fromHook("counter", ({ initialValue = 0, ...props }) => {
 ## Use the patterns
 
 ### Decorator Pattern
-```javascript
+```jsx
 const Displayer = ({ counter, ...props }) => {
   return (
     <React.Fragment>
@@ -37,7 +37,7 @@ const StatefulDisplayer = Counter.withState(Displayer);
 ```
 
 ### Render Prop Pattern
-```javascript
+```jsx
 const Displayer = (props) => (
   <Counter.State initialValue={0}>
     {({ counter }) => (
@@ -52,7 +52,7 @@ const Displayer = (props) => (
 ```
 
 ### Custom Hook Pattern
-```javascript
+```jsx
 const Displayer = (props) => {
   const { value, increase, decrease } = Counter.useHook({ initialValue: 0 });
 
