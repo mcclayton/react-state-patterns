@@ -5,11 +5,14 @@ Powered by React Hooks under the hood.
 
 # Getting Started
 
+## Install
 ```
 npm install react-state-patterns --save
 ```
 
-## Creating State Patterns
+## Usage
+
+### Creating State Patterns
 ```jsx
 import { statePatterns } from 'react-state-patterns';
 
@@ -28,9 +31,9 @@ const Counter = statePatterns(
 );
 ```
 
-## Use the patterns
+### Use the patterns
 
-### Decorator Pattern
+#### Decorator Pattern
 ```jsx
 const Displayer = ({ counter: { state, handlers }}) => {
   return (
@@ -48,7 +51,7 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(<StatefulDisplayer initialState={{ count: 0 }} />, rootElement);
 ```
 
-### Render Prop Pattern
+#### Render Prop Pattern
 ```jsx
 const Displayer = (props) => (
   <Counter.State initialState={{ count: 0 }}>
@@ -63,7 +66,7 @@ const Displayer = (props) => (
 );
 ```
 
-### Custom Hook Pattern
+#### Custom Hook Pattern
 ```jsx
 const Displayer = (props) => {
   const { counter: { state, handlers } } = Counter.useHook({ initialState: { count: 0 } });
