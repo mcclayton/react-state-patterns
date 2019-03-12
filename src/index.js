@@ -109,7 +109,7 @@ const createDecorator = (
  * @param {?String} nameSpace An optional string to namespace the
  *    state and handlers under.
  */
-const statePatterns = (
+const createStatePatterns = (
   initialState = {},
   handlers = _defaultHandlers,
   nameSpace
@@ -125,9 +125,10 @@ const statePatterns = (
   };
 };
 
-export default {
-  statePatterns,
-  stateHook: createStateHook,
-  renderProp: createRenderProp,
-  decorator: createDecorator,
-};
+/**
+ * Export the API
+ */
+export const statePatterns = createStatePatterns;
+export const stateHook = createStateHook;
+export const renderProp = createRenderProp;
+export const decorator = createDecorator;

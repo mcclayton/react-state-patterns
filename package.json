@@ -1,13 +1,13 @@
 {
   "name": "react-state-patterns",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tiny utility package for easily creating reusable implementations of React state patterns.",
   "main": "dist/main.js",
   "scripts": {
     "test": "",
-    "build": "webpack --mode production",
-    "prepublish": "yarn build"
+    "build": "webpack --mode production"
   },
+  "prepublishOnly": "yarn build",
   "lint-staged": {
     "*.{js,jsx}": [
       "prettier --write",
