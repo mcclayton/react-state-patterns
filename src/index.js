@@ -1,11 +1,18 @@
 import React from 'react';
 
+/**
+ * Helpers
+ */
 const _defaultHandlers = (state) => ({
   setState: (newState) => ({
     ...state,
     ...newState,
   }),
 });
+
+/**
+ * Main API
+ */
 
 /**
  * Creates an implementation of the state hook pattern.
