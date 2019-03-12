@@ -14,6 +14,48 @@ npm install react-state-patterns --save
 
 ## Usage
 
+### API
++ `statePatterns` - _Creates an implementation of the state decorator, hook, and render prop patterns_
+```javascript
+/**
+ * @param {Object} initialState The state to use initially
+ * @param {Function} handlers A function that takes state as the argument and
+ *    returns an object of handlers
+ * @param {?String} nameSpace An optional string to namespace the
+ *    state and handlers under.
+ */
+```
++ `stateHook` - _Creates an implementation of the state hook pattern._
+```javascript
+/**
+ * @param {Object} initialState The state to use initially
+ * @param {Function} handlers A function that takes state as the argument and
+ *    returns an object of handlers
+ * @param {?String} nameSpace An optional string to namespace the
+ *    state and handlers under.
+ */
+```
++ `renderProp` - _Creates an implementation of the state render prop pattern._
+```javascript
+/**
+ * @param {Object} initialState The state to use initially
+ * @param {Function} handlers A function that takes state as the argument and
+ *    returns an object of handlers
+ * @param {?String} nameSpace An optional string to namespace the
+ *    state and handlers under.
+ */
+```
++ `decorator` -  _Creates an implementation of the state decorator pattern._
+```javascript
+/**
+ * @param {Object} initialState The state to use initially
+ * @param {Function} handlers A function that takes state as the argument and
+ *    returns an object of handlers
+ * @param {?String} nameSpace An optional string to namespace the
+ *    state and handlers under.
+ */
+```
+
 ### Creating State Patterns
 ```jsx
 import { statePatterns } from 'react-state-patterns';
