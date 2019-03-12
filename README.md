@@ -1,4 +1,6 @@
 # react-state-patterns
+[![npm version](https://badge.fury.io/js/react-state-patterns.svg)](https://badge.fury.io/js/react-state-patterns)
+
 Tiny utility package for easily creating reusable implementations of React state patterns.
 
 Powered by React Hooks under the hood.
@@ -6,7 +8,7 @@ Powered by React Hooks under the hood.
 # Getting Started
 
 ## Install
-```
+```bash
 npm install react-state-patterns --save
 ```
 
