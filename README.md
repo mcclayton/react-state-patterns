@@ -3,7 +3,7 @@
 
 Tiny utility package for easily creating reusable implementations of React state provider patterns.
 
-Powered by React Hooks under the hood.
+⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: ^16.8.0`)
 
 # Getting Started
 
