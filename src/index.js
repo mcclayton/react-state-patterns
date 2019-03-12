@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 /**
  * Helpers
@@ -132,3 +132,10 @@ export const statePatterns = createStatePatterns;
 export const stateHook = createStateHook;
 export const renderProp = createRenderProp;
 export const decorator = createDecorator;
+
+export default {
+  statePatterns,
+  stateHook,
+  renderProp,
+  decorator,
+};

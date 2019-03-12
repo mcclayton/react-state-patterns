@@ -10,4 +10,9 @@ module.exports = {
       },
     ],
   },
+  output: {
+    library: 'main',
+    libraryTarget: 'umd',
+    filename: 'main.js',
+  },
 };
