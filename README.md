@@ -1,7 +1,7 @@
 # react-state-patterns
 [![npm version](https://badge.fury.io/js/react-state-patterns.svg)](https://badge.fury.io/js/react-state-patterns)
 
-Tiny utility package for easily creating reusable implementations of React state patterns.
+Tiny utility package for easily creating reusable implementations of React state provider patterns.
 
 Powered by React Hooks under the hood.
 
