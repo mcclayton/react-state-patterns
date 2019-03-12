@@ -1,6 +1,6 @@
 {
   "name": "react-state-patterns",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tiny utility package for easily creating reusable implementations of React state patterns.",
   "main": "dist/main.js",
   "scripts": {
