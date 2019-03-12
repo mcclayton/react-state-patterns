@@ -1,5 +1,5 @@
 # react-state-patterns
-Tiny utility package for easily creating React state patterns.
+Tiny utility package for easily creating reusable implementations of React state patterns.
 
 Powered by React Hooks under the hood.
 

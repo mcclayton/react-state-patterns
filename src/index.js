@@ -85,7 +85,7 @@ const createDecorator = (
   initialState = {},
   handlers = _defaultHandlers,
   nameSpace
-) => ({ children, ...props }) => {
+) => {
   const stateHook = createStateHook(initialState, handlers, nameSpace);
   const Decorator = Component => props => (
     <Component {...{ ...stateHook(props), ...props }} />
