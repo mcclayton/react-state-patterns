@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ],
+  "rules": {
+    "array-bracket-spacing": 0,
+    "arrow-body-style": 0,
+    "camelcase": 0,
+    "generator-star-spacing": 0,
+    "id-length": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "comma-dangle": 0,
+    "max-len": [1, {
+      "code": 80,
+      // Matches all valid ES6 import syntaxes
+      "ignorePattern": "\\bimport\\s+(?:.+\\s+from\\s+)?[\\'\"]([^\\'\"]+)[\\'\"]",
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
+    "new-cap": 0,
+    "no-shadow": [1, {"builtinGlobals": false, "hoist": "all"}],
+    "no-underscore-dangle": 0,
+    "no-unused-expressions": [2, { "allowShortCircuit": true }],
+    "react/jsx-boolean-value": 0,
+    "react/jsx-no-bind": 1,
+    "react/jsx-no-duplicate-props": 2,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-first-prop-new-line": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/no-unused-prop-types": 1,
+    "react/prefer-stateless-function": 0,
+    "space-in-parens": 0
+  }
+}

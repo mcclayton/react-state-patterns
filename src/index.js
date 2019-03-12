@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const _defaultHandlers = state => ({
-  setState: newState => ({
+const _defaultHandlers = (state) => ({
+  setState: (newState) => ({
     ...state,
-    ...newState
-  })
+    ...newState,
+  }),
 });
 
 /**
@@ -29,7 +29,7 @@ const createStateHook = (
       acc[handlerKey] = (...args) =>
         setState({
           ...state,
-          ...handlersWithState[handlerKey](...args)
+          ...handlersWithState[handlerKey](...args),
         });
       return acc;
     },
@@ -39,7 +39,7 @@ const createStateHook = (
   const hookSchema = {
     handlers: {
       setState,
-      ...stateHandlers
+      ...stateHandlers,
     },
     state,
   };
@@ -66,7 +66,7 @@ const createRenderProp = (
 ) => {
   const stateHook = createStateHook(initialState, handlers, nameSpace);
   const renderProp = ({ children, ...props }) => {
-    return typeof children === "function"
+    return typeof children === 'function'
       ? children(stateHook(props))
       : children;
   };
@@ -85,9 +85,9 @@ const createDecorator = (
   initialState = {},
   handlers = _defaultHandlers,
   nameSpace
-) => ({ children, ...props }) => {
+) => {
   const stateHook = createStateHook(initialState, handlers, nameSpace);
-  const Decorator = Component => props => (
+  const Decorator = (Component) => (props) => (
     <Component {...{ ...stateHook(props), ...props }} />
   );
   return Decorator;
@@ -114,7 +114,7 @@ const statePatterns = (
   return {
     useHook: stateHook,
     withState: Decorator,
-    State: renderProp
+    State: renderProp,
   };
 };
 

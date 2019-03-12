@@ -1,9 +1,13 @@
 # react-state-patterns
-Tiny utility package for easily creating React state patterns.
+Tiny utility package for easily creating reusable implementations of React state patterns.
 
 Powered by React Hooks under the hood.
 
-# Examples
+# Getting Started
+
+```
+npm install react-state-patterns --save
+```
 
 ## Creating State Patterns
 ```jsx
@@ -73,3 +77,13 @@ const Displayer = (props) => {
   );
 };
 ```
+
+## Code Style Guides
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+[Prettier](https://prettier.io/) is run as a pre-commit hook to automatically
+modify staged `.js` and `.jsx` files to adhere to base code style rules defined in the `.prettierrc`.
+
+[Eslint](https://eslint.org/) is also used as an in-editor linter, so be sure to install
+an appropriate [Eslint Plugin](https://eslint.org/docs/3.0.0/user-guide/integrations#editors) for your editor of choice.
+Prettier rules are setup to take precedence and override any conflicting eslint rules.
