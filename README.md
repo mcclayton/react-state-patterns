@@ -37,15 +37,13 @@ const Counter = statePatterns(
 
 #### Decorator Pattern
 ```jsx
-const Displayer = ({ counter: { state, handlers }}) => {
-  return (
-    <React.Fragment>
-      <div>{state.count}</div>
-      <button onClick={() => handlers.decrementBy(1)}>Decrement</button>
-      <button onClick={() => handlers.incrementBy(1)}>Increment</button>
-    </React.Fragment>
-  );
-};
+const Displayer = ({ counter: { state, handlers }}) => (
+  <React.Fragment>
+    <div>{state.count}</div>
+    <button onClick={() => handlers.decrementBy(1)}>Decrement</button>
+    <button onClick={() => handlers.incrementBy(1)}>Increment</button>
+  </React.Fragment>
+);
 
 const StatefulDisplayer = Counter.withState(Displayer);
 
