@@ -1,50 +1,57 @@
 # react-state-patterns
 Tiny utility package for easily creating React state patterns.
+Powered by React Hooks under the hood.
 
 # Examples
 
 ## fromHook
 ```jsx
-import { fromHook } from 'react-state-patterns';
+import { statePatterns } from 'react-state-patterns';
 
-// Create the state patterns from a custom React state hook.
-const Counter = fromHook("counter", ({ initialValue = 0, ...props }) => {
-  const [value, setCount] = useState(initialValue);
-
-  return {
-    value,
-    increase: () => setCount(value + 1),
-    decrease: () => setCount(value - 1)
-  };
-});
+// Create the state patterns
+const Counter = statePatterns(
+  { count: 0 },
+  state => ({
+    decrementBy: (value) => ({
+      count: state.count - value
+    }),
+    incrementBy: (value) => ({
+      count: state.count + value
+    }),
+  }),
+  "counter"
+);
 ```
 
 ## Use the patterns
 
 ### Decorator Pattern
 ```jsx
-const Displayer = ({ counter, ...props }) => {
+const Displayer = ({ counter: { state, handlers }}) => {
   return (
     <React.Fragment>
-      <div>{counter.value}</div>
-      <button onClick={counter.decrease}>Decrement</button>
-      <button onClick={counter.increase}>Increment</button>
+      <div>{state.count}</div>
+      <button onClick={() => handlers.decrementBy(1)}>Decrement</button>
+      <button onClick={() => handlers.incrementBy(1)}>Increment</button>
     </React.Fragment>
   );
 };
 
 const StatefulDisplayer = Counter.withState(Displayer);
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<StatefulDisplayer initialState={{ count: 0 }} />, rootElement);
 ```
 
 ### Render Prop Pattern
 ```jsx
 const Displayer = (props) => (
-  <Counter.State initialValue={0}>
-    {({ counter }) => (
+  <Counter.State initialState={{ count: 0 }}>
+    {({ counter: { state, handlers } }) => (
       <React.Fragment>
-        <div>{counter.value}</div>
-        <button onClick={counter.decrease}>Decrement</button>
-        <button onClick={counter.increase}>Increment</button>
+        <div>{state.count}</div>
+        <button onClick={() => handlers.decrementBy(1)}>Decrement</button>
+        <button onClick={() => handlers.incrementBy(1)}>Increment</button>
       </React.Fragment>
     )}
   </Counter.State>
@@ -54,13 +61,13 @@ const Displayer = (props) => (
 ### Custom Hook Pattern
 ```jsx
 const Displayer = (props) => {
-  const { value, increase, decrease } = Counter.useHook({ initialValue: 0 });
+  const { counter: { state, handlers } } = Counter.useHook({ initialState: { count: 0 } });
 
   return (
     <React.Fragment>
-      <div>{value}</div>
-      <button onClick={decrease}>Decrement</button>
-      <button onClick={increase}>Increment</button>
+      <div>{state.count}</div>
+      <button onClick={() => handlers.decrementBy(1)}>Decrement</button>
+      <button onClick={() => handlers.incrementBy(1)}>Increment</button>
     </React.Fragment>
   );
 };
