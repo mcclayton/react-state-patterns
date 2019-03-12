@@ -1,10 +1,10 @@
 # API
 
 ## Table of Contents
-  + [`statePatterns()`](###statePatterns)
-  + [`stateHook()`](###stateHook)
-  + [`renderProp()`](###renderProp)
-  + [`decorator()`](###decorator)
+  + [`statePatterns()`](#statePatterns)
+  + [`stateHook()`](#stateHook)
+  + [`renderProp()`](#renderProp)
+  + [`decorator()`](#decorator)
 
 ### statePatterns
 `statePatterns` - _Creates an implementation of the state decorator, hook, and render prop provider patterns_
