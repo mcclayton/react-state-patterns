@@ -1,10 +1,11 @@
 # react-state-patterns
 Tiny utility package for easily creating React state patterns.
+
 Powered by React Hooks under the hood.
 
 # Examples
 
-## fromHook
+## Creating State Patterns
 ```jsx
 import { statePatterns } from 'react-state-patterns';
 
