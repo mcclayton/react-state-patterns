@@ -1,6 +1,12 @@
 # API
 
-## statePatterns
+## Table of Contents
+  + [`statePatterns()`](###statePatterns)
+  + [`stateHook()`](###stateHook)
+  + [`renderProp()`](###renderProp)
+  + [`decorator()`](###decorator)
+
+### statePatterns
 `statePatterns` - _Creates an implementation of the state decorator, hook, and render prop provider patterns_
 ```javascript
 /**
@@ -15,7 +21,7 @@
  */
 ```
 
-## stateHook
+### stateHook
 + `stateHook` - _Creates an implementation of the state hook provider pattern._
 ```javascript
 /**
@@ -30,7 +36,7 @@
  */
 ```
 
-## renderProp
+### renderProp
 + `renderProp` - _Creates an implementation of the state render prop provider pattern._
 ```javascript
 /**
@@ -43,7 +49,7 @@
  */
 ```
 
-## decorator
+### decorator
 + `decorator` -  _Creates an implementation of the state decorator provider pattern._
 ```javascript
 /**
