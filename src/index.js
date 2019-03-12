@@ -21,6 +21,9 @@ const _defaultHandlers = (state) => ({
  *    returns an object of handlers
  * @param {?String} nameSpace An optional string to namespace the
  *    state and handlers under.
+ * @return {Function} A custom state hook function that returns the state and
+ *    handlers in an object literal (Optionally wrapped in the namespace if
+ *    provided)
  */
 const createStateHook = (
   initialState = {},
@@ -65,6 +68,7 @@ const createStateHook = (
  *    returns an object of handlers
  * @param {?String} nameSpace An optional string to namespace the
  *    state and handlers under.
+ * @return {Component} A component with the state injected into the render prop.
  */
 const createRenderProp = (
   initialState = {},
@@ -87,6 +91,8 @@ const createRenderProp = (
  *    returns an object of handlers
  * @param {?String} nameSpace An optional string to namespace the
  *    state and handlers under.
+ * @return {Function} The decorator HOC function that takes in a React Component
+ *    and decorates it with the state.
  */
 const createDecorator = (
   initialState = {},
@@ -108,6 +114,9 @@ const createDecorator = (
  *    returns an object of handlers
  * @param {?String} nameSpace An optional string to namespace the
  *    state and handlers under.
+ * @return {Object} An object containing the state decorator, hook, and
+ *    render prop provider patterns.
+ *     i.e. { useHook, withState, State }
  */
 const createStatePatterns = (
   initialState = {},
