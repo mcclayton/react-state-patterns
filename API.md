@@ -7,7 +7,8 @@
     + [`renderProp()`](#renderProp)
     + [`decorator()`](#decorator)
   - Utils
-    + [`makeHook()`](#makeHook)
+    + [`hookSchema()`](#hookSchema)
+    + [`stateHook()`](#stateHook)
 
 
 ## Main API
