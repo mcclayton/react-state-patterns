@@ -3,9 +3,9 @@
 
 Tiny utility package for easily creating reusable implementations of React state provider patterns.
 
-⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: ^16.8.0`)
-
 🚀  [react-state-patterns](https://www.npmjs.com/package/react-state-patterns) makes it easy to (and reduces boilerplate) create implementations of common React state provider patterns.
+
+⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: ^16.8.0`)
 
 # Getting Started
 
@@ -20,22 +20,39 @@ npm install react-state-patterns --save
 [View API Docs Here](https://github.com/mcclayton/react-state-patterns/blob/master/API.md)
 
 ### Creating State Patterns
+
+## Directly From Hook
 ```jsx
-import { statePatterns } from 'react-state-patterns';
+import { statePatterns, hookSchema } from 'react-state-patterns';
 
 // Create the state patterns
-const Counter = statePatterns(
-  { count: 0 },
-  state => ({
-    decrementBy: (value) => ({
-      count: state.count - value
+const Counter = createStatePatterns(props => {
+  const [count, setCount] = useState(props.initialValue || 0);
+  const handlers = {
+    incrementBy: value => setCount(count + value),
+    decrementBy: value => setCount(count - value)
+  };
+  // hookSchema(...)
+  //    => { counter: { state: { count: 0 }, handlers: { incrementBy: (v) => {...}, decrementBy: (v) => {...} } } }
+  return hookSchema({ count: count }, handlers, "counter");
+});
+```
+
+## Using stateHook
+[stateHook API Docs](https://github.com/mcclayton/react-state-patterns/blob/master/API.md#stateHook)
+```jsx
+import { statePatterns, stateHook } from 'react-state-patterns';
+
+// Create the state patterns
+const Counter = createStatePatterns(
+  createStateHook(
+    { count: 0 },
+    state => ({
+      incrementBy: value => ({ ...state, count: state.count + value }),
+      decrementBy: value => ({ ...state, count: state.count - value })
     }),
-    incrementBy: (value) => ({
-      count: state.count + value
-    }),
-  }),
-  "counter"
-);
+    "counter"
+  ));
 ```
 
 ### Use the patterns
@@ -53,13 +70,13 @@ const Displayer = ({ counter: { state, handlers }}) => (
 const StatefulDisplayer = Counter.withState(Displayer);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<StatefulDisplayer initialState={{ count: 0 }} />, rootElement);
+ReactDOM.render(<StatefulDisplayer initialValue={5} />, rootElement);
 ```
 
 #### Render Prop Pattern
 ```jsx
 const Displayer = (props) => (
-  <Counter.State initialState={{ count: 0 }}>
+  <Counter.State initialValue={5}>
     {({ counter: { state, handlers } }) => (
       <React.Fragment>
         <div>{state.count}</div>
@@ -74,7 +91,7 @@ const Displayer = (props) => (
 #### Custom Hook Pattern
 ```jsx
 const Displayer = (props) => {
-  const { counter: { state, handlers } } = Counter.useHook({ initialState: { count: 0 } });
+  const { counter: { state, handlers } } = Counter.useHook({ initialValue: 5 });
 
   return (
     <React.Fragment>
