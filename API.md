@@ -5,6 +5,7 @@
     + [`statePatterns()`](#statePatterns)
     + [`renderProp()`](#renderProp)
     + [`decorator()`](#decorator)
+    + [`context()`](#context)
   - Utils
     + [`hookSchema()`](#hookSchema)
     + [`stateHook()`](#stateHook)
@@ -13,14 +14,15 @@
 ## Main API
 
 ### statePatterns
-`statePatterns` - _Creates an implementation of the state decorator, hook, and render prop provider patterns_
+`statePatterns` - _Creates an implementation of the state decorator, hook, render prop, and context provider/consumer patterns._
+
 ```javascript
 /**
  * @param {Function} stateHook A custom React hook to manage state.
  *    Important: This hook will receive props and must return an object literal.
  * @return {Object} An object containing the state decorator, hook, and
  *    render prop provider patterns.
- *     i.e. { useHook, withState, State }
+ *     i.e. { useHook, withState, State, Provider, Consumer }
  */
 ```
 
@@ -42,6 +44,17 @@
  *    Important: This hook will receive props and must return an object literal.
  * @return {Function} The decorator HOC function that takes in a React Component
  *    and decorates it with the state.
+ */
+```
+
+### context
++ `context` -  _Creates an implementation of the state Context Provider/Consumer pattern._
+```javascript
+/**
+ * @param {Function} stateHook A custom React hook to manage state.
+ *    Important: This hook will receive props and must return an object.
+ * @return {Object} An Object containing both the React Context
+ *    Provider and Consumer. i.e. { Consumer: ..., Provider: ... }
  */
 ```
 

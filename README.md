@@ -52,7 +52,8 @@ const Counter = statePatterns(
       decrementBy: value => ({ ...state, count: state.count - value })
     }),
     "counter"
-  ));
+  )
+);
 ```
 
 ### Use the patterns
@@ -85,6 +86,23 @@ const Displayer = (props) => (
       </React.Fragment>
     )}
   </Counter.State>
+);
+```
+
+#### Context Provider/Consumer Pattern
+```jsx
+const Displayer = (props) => (
+  <Counter.Provider initialValue={5}>
+    <Counter.Consumer>
+      {({ counter: { state, handlers } }) => (
+        <React.Fragment>
+          <div>{state.count}</div>
+          <button onClick={() => handlers.decrementBy(1)}>Decrement</button>
+          <button onClick={() => handlers.incrementBy(1)}>Increment</button>
+        </React.Fragment>
+      )}
+    </Counter.Consumer>
+  </Counter.Provider>
 );
 ```
 
