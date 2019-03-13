@@ -105,7 +105,7 @@ const createStateHook = (
 export const statePatterns = createStatePatterns;
 export const renderProp = createRenderProp;
 export const decorator = createDecorator;
-export const makeHook = createStateHook;
+export const stateHook = createStateHook;
 
 export const hookSchema = getHookSchema;
 

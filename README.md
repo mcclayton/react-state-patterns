@@ -26,7 +26,7 @@ npm install react-state-patterns --save
 import { statePatterns, hookSchema } from 'react-state-patterns';
 
 // Create the state patterns
-const Counter = createStatePatterns(props => {
+const Counter = statePatterns(props => {
   const [count, setCount] = useState(props.initialValue || 0);
   const handlers = {
     incrementBy: value => setCount(count + value),
@@ -44,8 +44,8 @@ const Counter = createStatePatterns(props => {
 import { statePatterns, stateHook } from 'react-state-patterns';
 
 // Create the state patterns
-const Counter = createStatePatterns(
-  createStateHook(
+const Counter = statePatterns(
+  stateHook(
     { count: 0 },
     state => ({
       incrementBy: value => ({ ...state, count: state.count + value }),
