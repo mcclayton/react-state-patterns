@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { wrapStateHook } from './helpers';
+import { wrapStateHook, defaultHandlers } from './helpers';
 
 /**
  * Main API
@@ -73,13 +73,13 @@ const getHookSchema = (state, handlers = {}, nameSpace) => {
  *    Each handler's return value will be used as the new state when invoked.
  * @param {?String} nameSpace An optional string to namespace the
  *    state and handlers under.
- * @return {Object} An object containing the state decorator, hook, and
- *    render prop provider patterns.
+ * @return {Function} A custom React state hook that accepts props and returns an object
+ *    of the form { nameSpace: { handlers: {}, state: {} } } }
  *     i.e. { useHook, withState, State }
  */
 const createStateHook = (
   initialState = {},
-  handlers = _defaultHandlers,
+  handlers = defaultHandlers,
   nameSpace
 ) => (props) => {
   const [state, setState] = useState(initialState);
@@ -111,8 +111,8 @@ export const hookSchema = getHookSchema;
 
 export default {
   statePatterns,
-  stateHook,
   renderProp,
   decorator,
+  stateHook,
   hookSchema,
 };

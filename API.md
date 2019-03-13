@@ -1,38 +1,26 @@
 # API
 
 ## Table of Contents
-  + [`statePatterns()`](#statePatterns)
-  + [`stateHook()`](#stateHook)
-  + [`renderProp()`](#renderProp)
-  + [`decorator()`](#decorator)
+  - Main API
+    + [`statePatterns()`](#statePatterns)
+    + [`stateHook()`](#stateHook)
+    + [`renderProp()`](#renderProp)
+    + [`decorator()`](#decorator)
+  - Utils
+    + [`makeHook()`](#makeHook)
+
+
+## Main API
 
 ### statePatterns
 `statePatterns` - _Creates an implementation of the state decorator, hook, and render prop provider patterns_
 ```javascript
 /**
- * @param {Object} initialState The state to use initially
- * @param {Function} handlers A function that takes state as the argument and
- *    returns an object of handlers
- * @param {?String} nameSpace An optional string to namespace the
- *    state and handlers under.
+ * @param {Function} stateHook A custom React hook to manage state.
+ *    Important: This hook will receive props and must return an object.
  * @return {Object} An object containing the state decorator, hook, and
  *    render prop provider patterns.
  *     i.e. { useHook, withState, State }
- */
-```
-
-### stateHook
-+ `stateHook` - _Creates an implementation of the state hook provider pattern._
-```javascript
-/**
- * @param {Object} initialState The state to use initially
- * @param {Function} handlers A function that takes state as the argument and
- *    returns an object of handlers
- * @param {?String} nameSpace An optional string to namespace the
- *    state and handlers under.
- * @return {Function} A custom state hook function that returns the state and
- *    handlers in an object literal (Optionally wrapped in the namespace if
- *    provided)
  */
 ```
 
@@ -60,5 +48,38 @@
  *    state and handlers under.
  * @return {Function} The decorator HOC function that takes in a React Component
  *    and decorates it with the state.
+ */
+```
+
+
+## Utils
+
+### hookSchema
++ `hookSchema` - _Creates a hook schema that can be returned from React hooks._
+```javascript
+/**
+ * @param {Any} state The state which will be passed down to providers.
+ * @param {Object} handlers The state handlers which will be passed down to providers.
+ * @param {?String} nameSpace An optional string to namespace the
+ *    state and handlers under.
+ * @return {Object} An object containing with the handlers and state as keys.
+ *    Optionally wrapped in the nameSpace. i.e. { nameSpace: { handlers: {}, state: {} } }
+ */
+```
+
+### stateHook
++ `stateHook` - _Creates a custom React state hook that accepts props and returns an object of the form:_
+`{ nameSpace: { handlers: {}, state: {} } } }`
+```javascript
+/**
+ * @param {Object} initialState The state to use initially
+ * @param {Function} handlers A function that takes state as the argument and
+ *    returns an object of handlers i.e. (state) => ({ myHandler: () => ({ ...state }) })
+ *    Each handler's return value will be used as the new state when invoked.
+ * @param {?String} nameSpace An optional string to namespace the
+ *    state and handlers under.
+ * @return {Function} A custom React state hook that accepts props and returns an object
+ *    of the form { nameSpace: { handlers: {}, state: {} } } }
+ *     i.e. { useHook, withState, State }
  */
 ```
