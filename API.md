@@ -17,7 +17,7 @@
 ```javascript
 /**
  * @param {Function} stateHook A custom React hook to manage state.
- *    Important: This hook will receive props and must return an object.
+ *    Important: This hook will receive props and must return an object literal.
  * @return {Object} An object containing the state decorator, hook, and
  *    render prop provider patterns.
  *     i.e. { useHook, withState, State }
@@ -28,11 +28,8 @@
 + `renderProp` - _Creates an implementation of the state render prop provider pattern._
 ```javascript
 /**
- * @param {Object} initialState The state to use initially
- * @param {Function} handlers A function that takes state as the argument and
- *    returns an object of handlers
- * @param {?String} nameSpace An optional string to namespace the
- *    state and handlers under.
+ * @param {Function} stateHook A custom React hook to manage state.
+ *    Important: This hook will receive props and must return an object literal.
  * @return {Component} A component with the state injected into the render prop.
  */
 ```
@@ -41,11 +38,8 @@
 + `decorator` -  _Creates an implementation of the state decorator provider pattern._
 ```javascript
 /**
- * @param {Object} initialState The state to use initially
- * @param {Function} handlers A function that takes state as the argument and
- *    returns an object of handlers
- * @param {?String} nameSpace An optional string to namespace the
- *    state and handlers under.
+ * @param {Function} stateHook A custom React hook to manage state.
+ *    Important: This hook will receive props and must return an object literal.
  * @return {Function} The decorator HOC function that takes in a React Component
  *    and decorates it with the state.
  */
