@@ -24,18 +24,16 @@ npm install react-state-patterns --save
 import { statePatterns } from 'react-state-patterns';
 
 // Create the state patterns
-const Counter = statePatterns(
-  { count: 0 },
-  state => ({
-    decrementBy: (value) => ({
-      count: state.count - value
-    }),
-    incrementBy: (value) => ({
-      count: state.count + value
-    }),
-  }),
-  "counter"
-);
+const Counter = createStatePatterns(props => {
+  const [count, setCount] = useState(props.initialValue || 0);
+  const handlers = {
+    incrementBy: value => setCount(count + value),
+    decrementBy: value => setCount(count - value)
+  };
+  // getHookSchema(...)
+  //    => { counter: { state: { count: 0 }, handlers: { incrementBy: (v) => {...}, decrementBy: (v) => {...} } } }
+  return getHookSchema({ count: count }, handlers, "counter");
+});
 ```
 
 ### Use the patterns
@@ -53,13 +51,13 @@ const Displayer = ({ counter: { state, handlers }}) => (
 const StatefulDisplayer = Counter.withState(Displayer);
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<StatefulDisplayer initialState={{ count: 0 }} />, rootElement);
+ReactDOM.render(<StatefulDisplayer initialValue={5} />, rootElement);
 ```
 
 #### Render Prop Pattern
 ```jsx
 const Displayer = (props) => (
-  <Counter.State initialState={{ count: 0 }}>
+  <Counter.State initialValue={5}>
     {({ counter: { state, handlers } }) => (
       <React.Fragment>
         <div>{state.count}</div>
@@ -74,7 +72,7 @@ const Displayer = (props) => (
 #### Custom Hook Pattern
 ```jsx
 const Displayer = (props) => {
-  const { counter: { state, handlers } } = Counter.useHook({ initialState: { count: 0 } });
+  const { counter: { state, handlers } } = Counter.useHook({ initialValue: 5 });
 
   return (
     <React.Fragment>
