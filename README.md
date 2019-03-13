@@ -3,9 +3,9 @@
 
 Tiny utility package for easily creating reusable implementations of React state provider patterns.
 
-⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: ^16.8.0`)
-
 🚀  [react-state-patterns](https://www.npmjs.com/package/react-state-patterns) makes it easy to (and reduces boilerplate) create implementations of common React state provider patterns.
+
+⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: ^16.8.0`)
 
 # Getting Started
 
