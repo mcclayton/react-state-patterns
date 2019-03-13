@@ -3,7 +3,6 @@
 ## Table of Contents
   - Main API
     + [`statePatterns()`](#statePatterns)
-    + [`stateHook()`](#stateHook)
     + [`renderProp()`](#renderProp)
     + [`decorator()`](#decorator)
   - Utils
