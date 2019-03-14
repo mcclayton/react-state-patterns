@@ -128,7 +128,7 @@ const createStateHook = (
 export const statePatterns = createStatePatterns;
 export const renderProp = createRenderProp;
 export const decorator = createDecorator;
-export const createContext = context;
+export const context = createContext;
 export const stateHook = createStateHook;
 
 export const hookSchema = getHookSchema;
