@@ -1,0 +1,10 @@
+{
+  "setupFiles": [
+    "<rootDir>/app/frontend/test-setup.js"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/public/"
+  ],
+  "testRegex": "/__tests__/.*\\.jsx?$"
+}

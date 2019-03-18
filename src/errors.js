@@ -1,10 +1,6 @@
-class StatePatternError extends Error {
+export class StatePatternError extends Error {
   constructor(...args) {
     super(...args);
     this.name = 'StatePatternError';
   }
 }
-
-export default {
-  StatePatternError,
-};
