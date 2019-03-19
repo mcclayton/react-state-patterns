@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { context } from '../index';
-import { mount } from 'enzyme';
+import { statePatterns } from '../index';
 // Mock out wrapStateHook
 jest.mock('../helpers', () => ({
   wrapStateHook: jest.fn(),
@@ -14,7 +13,7 @@ beforeEach(() => {
   );
 });
 
-describe('context', () => {
+describe('statePatterns', () => {
   const hook = (props) => {
     const [state, setState] = useState(props.initialState || {});
     return { state, setState };
@@ -22,26 +21,16 @@ describe('context', () => {
 
   it('calls `wrapStateHook` on the hook', () => {
     wrapStateHook.mockImplementation((hook) => hook);
-    context(hook);
+    statePatterns(hook);
     expect(wrapStateHook).toHaveBeenCalledWith(hook);
   });
 
-  it('creates Provider/Consumer that pass down hook return value', (done) => {
-    const initialState = { foo: 'bar' };
-    const { Provider, Consumer } = context(hook);
-    mount(
-      <Provider initialState={initialState}>
-        <div>
-          <Consumer>
-            {({ state, setState }) => {
-              expect(state).toEqual(initialState);
-              expect(typeof setState).toBe('function');
-              done();
-              return <div />;
-            }}
-          </Consumer>
-        </div>
-      </Provider>
-    );
+  it('creates hook, renderProp, decorator, and Provider/Consumer patterns', () => {
+    const patterns = statePatterns(hook);
+    expect(patterns.useHook).toBeInstanceOf(Function);
+    expect(patterns.State).toBeInstanceOf(Function);
+    expect(patterns.withState).toBeInstanceOf(Function);
+    expect(patterns.Provider).toBeInstanceOf(Function);
+    expect(patterns.Consumer).toBeInstanceOf(Object);
   });
 });

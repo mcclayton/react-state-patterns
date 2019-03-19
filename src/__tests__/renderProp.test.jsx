@@ -26,7 +26,7 @@ describe('renderProp', () => {
     expect(wrapStateHook).toHaveBeenCalledWith(hook);
   });
 
-  it('creates Provider/Consumer that pass down hook return value', (done) => {
+  it('creates component with render prop that passes down hook return value', (done) => {
     const initialState = { foo: 'bar' };
     const Component = renderProp(hook);
     mount(
