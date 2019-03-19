@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/node:7.10
     working_directory: ~/react-state-patterns
     steps:
       - checkout
