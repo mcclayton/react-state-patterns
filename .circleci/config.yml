@@ -3,6 +3,8 @@ jobs:
   test:
     docker:
       - image: circleci/node:8.10
+    environment:
+      - NODE_ENV: development
     working_directory: ~/react-state-patterns
     steps:
       - checkout
