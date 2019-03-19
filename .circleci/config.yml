@@ -3,8 +3,15 @@ jobs:
   test:
     docker:
       - image: circleci/node:8.10
+    working_directory: ~/react-state-patterns
     steps:
       - checkout
+      - run:
+          name: LS
+          command: |
+            pwd
+            ls
+            cat yarn.lock
       - run:
           name: Yarn Install
           command: |
