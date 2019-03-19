@@ -27,9 +27,12 @@ const createRenderProp = (stateHook) => {
  * @return {Function} The decorator HOC function that takes in a React Component
  *    and decorates it with the state.
  */
-const createDecorator = (stateHook) => (Component) => (props) => (
-  <Component {...{ ...stateHook(props), ...props }} />
-);
+const createDecorator = (stateHook) => {
+  const wrappedHook = wrapStateHook(stateHook);
+  return (Component) => (props) => (
+    <Component {...{ ...wrappedHook(props), ...props }} />
+  );
+};
 
 /**
  * Creates an implementation of the state Context Provider/Consumer pattern.
