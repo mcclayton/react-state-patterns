@@ -11,12 +11,6 @@ jobs:
       - run:
           name: Yarn Install
           command: |
-            pwd
-            ls
-            cat package.json
-      - run:
-          name: Yarn Install
-          command: |
             yarn install
       - run:
           name: Run JS Tests
