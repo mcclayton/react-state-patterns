@@ -8,10 +8,16 @@ jobs:
     working_directory: ~/react-state-patterns
     steps:
       - checkout
+      - restore_cache:
+          key: react-state-patterns-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: Yarn Install
           command: |
             yarn install
+      - save_cache:
+          key: react-state-patterns-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/react-state-patterns/node_modules
       - run:
           name: Run JS Tests
           command: yarn test
