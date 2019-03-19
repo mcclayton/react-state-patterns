@@ -2,8 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:9.10
-    working_directory: ~/react-state-patterns
+      - image: circleci/node:8.10
     steps:
       - checkout
       - run:
