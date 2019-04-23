@@ -1,5 +1,6 @@
 # react-state-patterns
 [![npm version](https://badge.fury.io/js/react-state-patterns.svg)](https://badge.fury.io/js/react-state-patterns)
+[![License](https://img.shields.io/npm/l/react-state-patterns.svg)](https://github.com/mcclayton/react-state-patterns/blob/master/LICENSE)
 [![CircleCI](https://circleci.com/gh/mcclayton/react-state-patterns.svg?style=svg)](https://circleci.com/gh/mcclayton/react-state-patterns)
 
 Tiny utility package for easily creating reusable implementations of React state provider patterns.
