@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { defaultHandlers } from './helpers';
+import { defaultHandlers } from '../helpers';
 import hookSchema from './hookSchema';
 
 /**
