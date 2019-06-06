@@ -1,5 +1,5 @@
 import React from 'react';
-import { wrapStateHook } from './helpers';
+import { wrapStateHook } from '../helpers';
 import createRenderProp from './renderProp';
 import createDecorator from './decorator';
 import createContext from './context';

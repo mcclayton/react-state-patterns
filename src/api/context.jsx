@@ -1,5 +1,5 @@
 import React from 'react';
-import { wrapStateHook } from './helpers';
+import { wrapStateHook } from '../helpers';
 
 /**
  * Creates an implementation of the state Context Provider/Consumer pattern.
