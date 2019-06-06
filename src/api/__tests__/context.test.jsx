@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { context } from '../index';
+import { context } from '../context';
 import { mount } from 'enzyme';
 // Mock out wrapStateHook
-jest.mock('../helpers', () => ({
+jest.mock('../../helpers', () => ({
   wrapStateHook: jest.fn(),
 }));
-import { wrapStateHook } from '../helpers';
+import { wrapStateHook } from '../../helpers';
 
 beforeEach(() => {
   // Require non-mocked wrapStateHook by default
   wrapStateHook.mockImplementationOnce(
-    require.requireActual('../helpers').wrapStateHook
+    require.requireActual('../../helpers').wrapStateHook
   );
 });
 

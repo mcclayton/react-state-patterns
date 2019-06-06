@@ -25,7 +25,7 @@ npm install react-state-patterns --save
 
 ## Directly From Hook
 ```jsx
-import { statePatterns, hookSchema } from 'react-state-patterns';
+import statePatterns, { hookSchema } from 'react-state-patterns';
 
 // Create the state patterns
 const Counter = statePatterns(props => {
@@ -38,12 +38,14 @@ const Counter = statePatterns(props => {
   //    => { counter: { state: { count: 0 }, handlers: { incrementBy: (v) => {...}, decrementBy: (v) => {...} } } }
   return hookSchema({ count: count }, handlers, "counter");
 });
+
+// Counter = { useHook, withState, State, Provider, Consumer }
 ```
 
 ## Using stateHook
 [stateHook API Docs](https://github.com/mcclayton/react-state-patterns/blob/master/API.md#stateHook)
 ```jsx
-import { statePatterns, stateHook } from 'react-state-patterns';
+import statePatterns { stateHook } from 'react-state-patterns';
 
 // Create the state patterns
 const Counter = statePatterns(
@@ -56,6 +58,8 @@ const Counter = statePatterns(
     "counter"
   )
 );
+
+// Counter = { useHook, withState, State, Provider, Consumer }
 ```
 
 ### Use the patterns

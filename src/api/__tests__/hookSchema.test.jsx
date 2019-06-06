@@ -1,4 +1,4 @@
-import { hookSchema } from '../index';
+import { hookSchema } from '../hookSchema';
 
 describe('hookSchema', () => {
   const handlers = { myHandler: () => {} };
