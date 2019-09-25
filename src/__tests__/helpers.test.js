@@ -2,6 +2,13 @@ import { wrapStateHook } from '../helpers';
 import { StatePatternError } from '../errors';
 
 describe('wrapStateHook', () => {
+  describe('when wrapping invalid hook', () => {
+    it('throws a StatePatternError', () => {
+      const stateHook = 'I am not a valid state hook.';
+      expect(wrapStateHook(stateHook)).toThrowError(StatePatternError);
+    });
+  });
+
   describe('when wrapping hook with no return', () => {
     it('throws a StatePatternError', () => {
       const stateHook = () => {};
