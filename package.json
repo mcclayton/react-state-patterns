@@ -1,6 +1,6 @@
 {
   "name": "react-state-patterns",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Tiny utility package for easily creating reusable implementations of React state provider patterns.",
   "main": "dist/main.js",
   "scripts": {
@@ -52,7 +52,7 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "enzyme": "^3.9.0",
+    "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "esdoc": "^1.1.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
