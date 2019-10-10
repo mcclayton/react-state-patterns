@@ -79,14 +79,20 @@
 `{ nameSpace: { handlers: {}, state: {} } } }`
 ```javascript
 /**
- * @param {Object} initialState The state to use initially
- * @param {Function} handlers A function that takes state as the argument and
- *    returns an object of handlers i.e. (state) => ({ myHandler: () => ({ ...state }) })
- *    Each handler's return value will be used as the new state when invoked.
- * @param {?String} nameSpace An optional string to namespace the
- *    state and handlers under.
+ * @param {Object|Function} initialState The state to use initially.
+ *    This argument is either an object, representing the initial state, or a
+ *    function that takes in props and returns the initial state which can be derived
+ *    from the passed in props.
+ * @param {Object} handlers An object whose keys are function state handlers.
+ *    Every state handler receives state and payload arguments and must return either a new state to be shallowly merged or undefined.
+ *    Returning undefined will not mutate the state.
+ *    Handlers are of the form (state) => (...args) => ({ ...stateToMerge })
+ * @param {?String|?Function} transform An optional string or function to transform the
+ *    shape of the state and handlers. When a string, the state/handlers are namespaced
+ *    under it. When a function, transform takes in an object argument containing state/handlers
+ *    and whatever is returned by the function will be the resulting shape.
+ *     i.e. ({ state, handlers }) => ({ nested: { namespace: { state, handlers } } })
  * @return {Function} A custom React state hook that accepts props and returns an object
- *    of the form { nameSpace: { handlers: {}, state: {} } } }
- *     i.e. { useHook, withState, State }
+ *    of the form { handlers: {}, state: {} } unless transformed by a transform string/function.
  */
 ```

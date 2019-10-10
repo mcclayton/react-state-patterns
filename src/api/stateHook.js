@@ -1,38 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { defaultHandlers } from '../helpers';
 import hookSchema from './hookSchema';
+import { StatePatternError } from '../errors';
+
+const _getInitialState = (initialState, props) => {
+  if (typeof initialState === 'function') {
+    return initialState(props);
+  }
+  return initialState;
+};
 
 /**
- * @param {Object} initialState The state to use initially
- * @param {Function} handlers A function that takes state as the argument and
- *    returns an object of handlers i.e. (state) => ({ myHandler: () => ({ ...state }) })
- *    Each handler's return value will be used as the new state when invoked.
- * @param {?String} nameSpace An optional string to namespace the
- *    state and handlers under.
+ * @param {Object|Function} initialState The state to use initially.
+ *    This argument is either an object, representing the initial state, or a
+ *    function that takes in props and returns the initial state which can be derived
+ *    from the passed in props.
+ * @param {Object} handlers An object whose keys are function state handlers.
+ *    Every state handler receives state and payload arguments and must return either a new state to be shallowly merged or undefined.
+ *    Returning undefined will not mutate the state.
+ *    Handlers are of the form (state) => (...args) => ({ ...stateToMerge })
+ * @param {?String|?Function} transform An optional string or function to transform the
+ *    shape of the state and handlers. When a string, the state/handlers are namespaced
+ *    under it. When a function, transform takes in an object argument containing state/handlers
+ *    and whatever is returned by the function will be the resulting shape.
+ *     i.e. ({ state, handlers }) => ({ nested: { namespace: { state, handlers } } })
  * @return {Function} A custom React state hook that accepts props and returns an object
- *    of the form { nameSpace: { handlers: {}, state: {} } } }
- *     i.e. { useHook, withState, State }
+ *    of the form { handlers: {}, state: {} } unless transformed by a transform string/function.
  */
 export const stateHook = (
   initialState = {},
   handlers = defaultHandlers,
-  nameSpace
+  transform
 ) => (props) => {
-  const [state, setState] = useState(initialState);
+  const initState = _getInitialState(initialState, props);
+  const [state, setState] = useState(initState);
+  const stateRef = useRef(initState);
+  useEffect(() => {
+    stateRef.current = state;
+  });
 
-  const handlersWithState = handlers(state);
-  const stateHandlers = Object.keys(handlersWithState).reduce(
-    (acc, handlerKey) => {
-      acc[handlerKey] = (...args) =>
+  const stateHandlers = Object.keys(handlers).reduce((acc, handlerKey) => {
+    acc[handlerKey] = (...args) => {
+      const returnedState = handlers[handlerKey](stateRef.current)(...args);
+      if (returnedState) {
         setState({
-          ...state,
-          ...handlersWithState[handlerKey](...args),
+          ...stateRef.current,
+          ...returnedState,
         });
-      return acc;
-    },
-    {}
-  );
-  return hookSchema(state, stateHandlers, nameSpace);
+      }
+    };
+    return acc;
+  }, {});
+  if (!transform || typeof transform === 'string') {
+    // Treat transform as a string namespace
+    return hookSchema(state, stateHandlers, transform);
+  } else if (typeof transform === 'function') {
+    // Transform as a function
+    return transform({ state, handlers: stateHandlers });
+  } else {
+    throw new StatePatternError(
+      `stateHook's transform argument expects either a string or function, but found: ${typeof transform}`
+    );
+  }
 };
 
 export default stateHook;

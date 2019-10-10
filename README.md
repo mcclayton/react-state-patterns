@@ -16,16 +16,11 @@ Tiny utility package for easily creating reusable implementations of React state
 npm install react-state-patterns --save
 ```
 
-## Usage
+## Creating State Patterns
 
-### API
-[View API Docs Here](https://github.com/mcclayton/react-state-patterns/blob/master/API.md)
-
-### Creating State Patterns
-
-## Directly From Hook
+#### Directly From Hook
 ```jsx
-import statePatterns, { hookSchema } from 'react-state-patterns';
+import statePatterns, { hookSchema } from '@procore/react-state-patterns';
 
 // Create the state patterns
 const Counter = statePatterns(props => {
@@ -42,19 +37,19 @@ const Counter = statePatterns(props => {
 // Counter = { useHook, withState, State, Provider, Consumer }
 ```
 
-## Using stateHook
+#### Using `stateHook` util
 [stateHook API Docs](https://github.com/mcclayton/react-state-patterns/blob/master/API.md#stateHook)
 ```jsx
-import statePatterns { stateHook } from 'react-state-patterns';
+import statePatterns, { stateHook } from '@procore/react-state-patterns';
 
 // Create the state patterns
 const Counter = statePatterns(
   stateHook(
-    { count: 0 },
-    state => ({
-      incrementBy: value => ({ ...state, count: state.count + value }),
-      decrementBy: value => ({ ...state, count: state.count - value })
-    }),
+    (props) => ({ count: props.initialValue || 0 }),
+    {
+      incrementBy: state => value => ({ ...state, count: state.count + value }),
+      decrementBy: state => value => ({ ...state, count: state.count - value })
+    },
     "counter"
   )
 );
@@ -62,7 +57,7 @@ const Counter = statePatterns(
 // Counter = { useHook, withState, State, Provider, Consumer }
 ```
 
-### Use the patterns
+## Use the patterns
 
 #### Decorator Pattern
 ```jsx
