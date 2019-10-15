@@ -1,13 +1,15 @@
+import * as React from 'react';
 import { StatePatternError } from './errors';
+import { StateHook } from './types/hooks';
 
-export const defaultHandlers = (state) => ({
-  setState: (newState) => ({
+export const defaultHandlers = {
+  setState: (state: object) => (newState: object) => ({
     ...state,
     ...newState,
   }),
-});
+};
 
-export const wrapStateHook = (stateHook) => (props) => {
+export const wrapStateHook = (stateHook: StateHook) => (props: object) => {
   const hookType = typeof stateHook;
   if (hookType !== 'function') {
     throw new StatePatternError(

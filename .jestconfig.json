@@ -6,5 +6,8 @@
     "/node_modules/",
     "/public/"
   ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
   "testRegex": "/__tests__/.*\\.jsx?$"
 }

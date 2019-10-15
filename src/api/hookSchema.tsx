@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 /**
  * Creates a hook schema that can be returned from React hooks.
@@ -9,7 +9,7 @@ import React from 'react';
  * @return {Object} An object containing with the handlers and state as keys.
  *    Optionally wrapped in the nameSpace. i.e. { nameSpace: { handlers: {}, state: {} } }
  */
-export const hookSchema = (state, handlers = {}, nameSpace) => {
+export const hookSchema = (state: any, handlers: object = {}, nameSpace?: string): object => {
   const hookSchema = { handlers, state };
   return nameSpace ? { [nameSpace]: hookSchema } : hookSchema;
 };

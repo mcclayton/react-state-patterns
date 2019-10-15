@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+    "outDir": "dist",
+  }
+}

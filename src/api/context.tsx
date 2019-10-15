@@ -1,5 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import { wrapStateHook } from '../helpers';
+import { StateHook } from '../types/hooks';
+
+interface ContextConfig {
+  children?: React.ReactNode,
+  props?: object,
+};
+
+interface Context<T> {
+  Provider: React.FunctionComponent<T>,
+  Consumer: React.Consumer<T>,
+};
 
 /**
  * Creates an implementation of the state Context Provider/Consumer pattern.
@@ -8,10 +19,10 @@ import { wrapStateHook } from '../helpers';
  * @return {Object} An Object containing both the React Context
  *    Provider and Consumer. i.e. { Consumer: ..., Provider: ... }
  */
-export const context = (stateHook) => {
+export const context = (stateHook: StateHook): Context<any> => {
   const wrappedHook = wrapStateHook(stateHook);
   const Context = React.createContext({});
-  const Provider = ({ children, ...props }) => (
+  const Provider = ({ children, ...props }: ContextConfig): React.ReactElement => (
     <Context.Provider value={wrappedHook(props)}>{children}</Context.Provider>
   );
 
