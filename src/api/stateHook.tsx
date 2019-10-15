@@ -1,9 +1,34 @@
-import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
 import { defaultHandlers } from '../helpers';
 import hookSchema from './hookSchema';
 import { StatePatternError } from '../errors';
+import { StateHook } from '../types/hooks';
 
-const _getInitialState = (initialState, props) => {
+interface InitialStateFunc {
+  (props: object): object
+};
+
+type InitialState = object | InitialStateFunc;
+
+interface TransformConfig {
+  state: object,
+  handlers: object,
+};
+
+interface TransformFunc {
+  ({ state, handlers }: TransformConfig): object
+};
+
+interface AccumulatorDict {
+  [key: string]: (...args: any[]) => any
+};
+
+interface StateHandlersDict {
+  [key: string]: (state: any) => (...args: any[]) => any;
+};
+
+
+const _getInitialState = (initialState: InitialState, props: object): object => {
   if (typeof initialState === 'function') {
     return initialState(props);
   }
@@ -28,19 +53,19 @@ const _getInitialState = (initialState, props) => {
  *    of the form { handlers: {}, state: {} } unless transformed by a transform string/function.
  */
 export const stateHook = (
-  initialState = {},
-  handlers = defaultHandlers,
-  transform
-) => (props) => {
+  initialState: InitialState = {},
+  handlers: StateHandlersDict = defaultHandlers,
+  transform?: string | TransformFunc,
+): StateHook => (props: object) => {
   const initState = _getInitialState(initialState, props);
-  const [state, setState] = useState(initState);
-  const stateRef = useRef(initState);
-  useEffect(() => {
+  const [state, setState] = React.useState(initState);
+  const stateRef = React.useRef(initState);
+  React.useEffect(() => {
     stateRef.current = state;
   });
 
-  const stateHandlers = Object.keys(handlers).reduce((acc, handlerKey) => {
-    acc[handlerKey] = (...args) => {
+  const stateHandlers = Object.keys(handlers).reduce((acc: AccumulatorDict, handlerKey: string) => {
+    acc[handlerKey] = (...args: any[]) => {
       const returnedState = handlers[handlerKey](stateRef.current)(...args);
       if (returnedState) {
         setState({

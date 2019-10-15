@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { wrapStateHook } from '../helpers';
 import createRenderProp from './renderProp';
 import createDecorator from './decorator';
 import createContext from './context';
+import { StateHook } from '../types/hooks';
 
 /**
  * Creates an implementation of the state decorator, hook, render
@@ -13,7 +14,7 @@ import createContext from './context';
  *    render prop provider patterns.
  *     i.e. { useHook, withState, State, Provider, Consumer }
  */
-export const statePatterns = (stateHook) => {
+export const statePatterns = (stateHook: StateHook) => {
   const wrappedStateHook = wrapStateHook(stateHook);
   const renderProp = createRenderProp(stateHook);
   const Decorator = createDecorator(stateHook);

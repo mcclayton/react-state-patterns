@@ -8,7 +8,17 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+        },
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   output: {
     library: 'main',

@@ -1,5 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { wrapStateHook } from '../helpers';
+import { StateHook } from '../types/hooks';
+
+export interface HOC {
+  (Component: React.ComponentType): React.FunctionComponent
+};
 
 /**
  * Creates an implementation of the state decorator pattern.
@@ -8,9 +13,9 @@ import { wrapStateHook } from '../helpers';
  * @return {Function} The decorator HOC function that takes in a React Component
  *    and decorates it with the state.
  */
-export const decorator = (stateHook) => {
+export const decorator = (stateHook: StateHook): HOC => {
   const wrappedHook = wrapStateHook(stateHook);
-  return (Component) => (props) => (
+  return (Component: React.ComponentType): React.FunctionComponent => (props: any) => (
     <Component {...{ ...wrappedHook(props), ...props }} />
   );
 };
