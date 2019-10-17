@@ -24,8 +24,8 @@ npm install react-state-patterns --save
 ```jsx
 import useProviders, { hookSchema } from '@procore/react-state-patterns';
 
-// Create the state patterns
-const Counter = statePatterns(props => {
+// Create the state provider patterns
+const Counter = useProviders(props => {
   const [count, setCount] = useState(props.initialValue || 0);
   const handlers = {
     incrementBy: value => setCount(count + value),
