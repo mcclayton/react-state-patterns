@@ -16,7 +16,7 @@ interface RenderPropConfig {
  *    Important: This hook will receive props and must return an object.
  * @return {Component} A component with the state injected into the render prop.
  */
-export const renderProp = (stateHook: StateHook): React.ReactNode => {
+export const useRenderProp = (stateHook: StateHook): React.ReactNode => {
   const wrappedHook = wrapStateHook(stateHook);
   return ({ children, ...props }: PropConfig | RenderPropConfig): any => {
     return typeof children === 'function'
@@ -25,4 +25,4 @@ export const renderProp = (stateHook: StateHook): React.ReactNode => {
   };
 };
 
-export default renderProp;
+export default useRenderProp;

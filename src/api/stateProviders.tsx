@@ -14,7 +14,7 @@ import { StateHook } from '../types/hooks';
  *    render prop provider patterns.
  *     i.e. { useHook, withState, State, Provider, Consumer }
  */
-export const statePatterns = (stateHook: StateHook) => {
+export const useProviders = (stateHook: StateHook) => {
   const wrappedStateHook = wrapStateHook(stateHook);
   const renderProp = createRenderProp(stateHook);
   const Decorator = createDecorator(stateHook);
@@ -29,4 +29,4 @@ export const statePatterns = (stateHook: StateHook) => {
   };
 };
 
-export default statePatterns;
+export default useProviders;

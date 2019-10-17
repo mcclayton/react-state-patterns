@@ -19,7 +19,7 @@ interface Context<T> {
  * @return {Object} An Object containing both the React Context
  *    Provider and Consumer. i.e. { Consumer: ..., Provider: ... }
  */
-export const context = (stateHook: StateHook): Context<any> => {
+export const useContext = (stateHook: StateHook): Context<any> => {
   const wrappedHook = wrapStateHook(stateHook);
   const Context = React.createContext({});
   const Provider = ({ children, ...props }: ContextConfig): React.ReactElement => (
@@ -32,4 +32,4 @@ export const context = (stateHook: StateHook): Context<any> => {
   };
 };
 
-export default context;
+export default useContext;

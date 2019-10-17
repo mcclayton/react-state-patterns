@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { decorator } from '../decorator';
+import { useRenderProp } from '../renderProp';
 import { mount } from 'enzyme';
 // Mock out wrapStateHook
 jest.mock('../../helpers', () => ({
@@ -14,7 +14,7 @@ beforeEach(() => {
   );
 });
 
-describe('decorator', () => {
+describe('useRenderProp', () => {
   const hook = (props) => {
     const [state, setState] = useState(props.initialState || {});
     return { state, setState };
@@ -22,20 +22,22 @@ describe('decorator', () => {
 
   it('calls `wrapStateHook` on the hook', () => {
     wrapStateHook.mockImplementation((hook) => hook);
-    decorator(hook);
+    useRenderProp(hook);
     expect(wrapStateHook).toHaveBeenCalledWith(hook);
   });
 
-  it('creates a decorator component that passes down hook return value', () => {
+  it('creates component with render prop that passes down hook return value', (done) => {
     const initialState = { foo: 'bar' };
-    const withState = decorator(hook);
-    const Component = ({ state, setState }) => (
-      <div id="component" state={state} onChange={setState} />
+    const Component = useRenderProp(hook);
+    mount(
+      <Component initialState={initialState}>
+        {({ state, setState }) => {
+          expect(state).toEqual(initialState);
+          expect(typeof setState).toBe('function');
+          done();
+          return <div />;
+        }}
+      </Component>
     );
-    const StatefulComponent = withState(Component);
-    const wrapper = mount(<StatefulComponent initialState={initialState} />);
-    const wrappedCmpt = wrapper.find('#component');
-    expect(wrappedCmpt.prop('state')).toEqual(initialState);
-    expect(typeof wrappedCmpt.prop('onChange')).toBe('function');
   });
 });
