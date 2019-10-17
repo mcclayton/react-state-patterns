@@ -9,7 +9,12 @@ Tiny utility package for easily creating reusable implementations of React state
 
 🚀  [react-state-patterns](https://www.npmjs.com/package/react-state-patterns) makes it easy to (and reduces boilerplate) create implementations of common React state provider patterns.
 
-⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: ^16.8.0`)
+⚠️  Powered by React Hooks under the hood. (This library has a peer dependency on `react: >= 16.8.0`)
+
+#### Why?
+`react-state-patterns` is incredibly simple, small, and lightweight -- making it a great choice for applications that wish to keep their footprint small and do not want a complex state management solution.
+This library is also great for those that wish to utilize React Hooks for reusable state but do not want to couple their presentational components directly with state (this makes unit testing components *much* easier 🌟).
+`react-state-patterns` also makes state management modular -- increasing code clarity and making organization of state a breeze 🍃.
 
 # Getting Started
 
