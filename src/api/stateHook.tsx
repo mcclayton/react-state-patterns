@@ -52,7 +52,7 @@ const _getInitialState = (initialState: InitialState, props: object): object => 
  * @return {Function} A custom React state hook that accepts props and returns an object
  *    of the form { handlers: {}, state: {} } unless transformed by a transform string/function.
  */
-export const stateHook = (
+export const useStateHook = (
   initialState: InitialState = {},
   handlers: StateHandlersDict = defaultHandlers,
   transform?: string | TransformFunc,
@@ -89,4 +89,4 @@ export const stateHook = (
   }
 };
 
-export default stateHook;
+export default useStateHook;

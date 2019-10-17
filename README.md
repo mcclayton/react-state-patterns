@@ -20,7 +20,7 @@ npm install react-state-patterns --save
 
 #### Directly From Hook
 ```jsx
-import statePatterns, { hookSchema } from '@procore/react-state-patterns';
+import useProviders, { hookSchema } from '@procore/react-state-patterns';
 
 // Create the state patterns
 const Counter = statePatterns(props => {
@@ -37,14 +37,14 @@ const Counter = statePatterns(props => {
 // Counter = { useHook, withState, State, Provider, Consumer }
 ```
 
-#### Using `stateHook` util
-[stateHook API Docs](https://github.com/mcclayton/react-state-patterns/blob/master/API.md#stateHook)
+#### Using `useStateHook` util
+[useStateHook API Docs](https://github.com/mcclayton/react-state-patterns/blob/master/API.md#useStateHook)
 ```jsx
-import statePatterns, { stateHook } from '@procore/react-state-patterns';
+import useProviders, { useStateHook } from '@procore/react-state-patterns';
 
 // Create the state patterns
-const Counter = statePatterns(
-  stateHook(
+const Counter = useProviders(
+  useStateHook(
     (props) => ({ count: props.initialValue || 0 }),
     {
       incrementBy: state => value => ({ ...state, count: state.count + value }),

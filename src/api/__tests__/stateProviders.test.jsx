@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { statePatterns } from '../statePatterns';
+import { useProviders } from '../stateProviders';
 // Mock out wrapStateHook
 jest.mock('../../helpers', () => ({
   wrapStateHook: jest.fn(),
@@ -13,7 +13,7 @@ beforeEach(() => {
   );
 });
 
-describe('statePatterns', () => {
+describe('useProviders', () => {
   const hook = (props) => {
     const [state, setState] = useState(props.initialState || {});
     return { state, setState };
@@ -21,12 +21,12 @@ describe('statePatterns', () => {
 
   it('calls `wrapStateHook` on the hook', () => {
     wrapStateHook.mockImplementation((hook) => hook);
-    statePatterns(hook);
+    useProviders(hook);
     expect(wrapStateHook).toHaveBeenCalledWith(hook);
   });
 
   it('creates hook, renderProp, decorator, and Provider/Consumer patterns', () => {
-    const patterns = statePatterns(hook);
+    const patterns = useProviders(hook);
     expect(patterns.useHook).toBeInstanceOf(Function);
     expect(patterns.State).toBeInstanceOf(Function);
     expect(patterns.withState).toBeInstanceOf(Function);

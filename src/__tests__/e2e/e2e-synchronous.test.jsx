@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import statePatterns, { stateHook, hookSchema } from '../../api';
+import useProviders, { useStateHook, hookSchema } from '../../api';
 import { mount } from 'enzyme';
 
 const Displayer = ({ counter: { state, handlers } }) => (
@@ -38,8 +38,8 @@ describe('React State Patterns Library', () => {
     describe('using stateHook', () => {
       describe('with string namespace', () => {
         it('succeeds end-to-end interactions', () => {
-          const Counter = statePatterns(
-            stateHook(
+          const Counter = useProviders(
+            useStateHook(
               (props) => ({ count: props.initialValue || 0 }),
               {
                 incrementBy: (state) => (value) => ({
@@ -59,8 +59,8 @@ describe('React State Patterns Library', () => {
 
       describe('with functional namespace transform', () => {
         it('succeeds end-to-end interactions', () => {
-          const Counter = statePatterns(
-            stateHook(
+          const Counter = useProviders(
+            useStateHook(
               (props) => ({ count: props.initialValue || 0 }),
               {
                 incrementBy: (state) => (value) => ({
@@ -86,7 +86,7 @@ describe('React State Patterns Library', () => {
 
     describe('directly from hook', () => {
       it('succeeds end-to-end interactions', () => {
-        const Counter = statePatterns((props) => {
+        const Counter = useProviders((props) => {
           const [count, setCount] = useState(props.initialValue || 0);
           const handlers = {
             incrementBy: (value) => setCount(count + value),

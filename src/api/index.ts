@@ -1,7 +1,7 @@
-export { default } from './statePatterns';
+export { default } from './stateProviders';
 
 /* Main */
-export * from './statePatterns';
+export * from './stateProviders';
 export * from './renderProp';
 export * from './decorator';
 export * from './context';

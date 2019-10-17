@@ -13,11 +13,11 @@ export interface HOC {
  * @return {Function} The decorator HOC function that takes in a React Component
  *    and decorates it with the state.
  */
-export const decorator = (stateHook: StateHook): HOC => {
+export const useDecorator = (stateHook: StateHook): HOC => {
   const wrappedHook = wrapStateHook(stateHook);
   return (Component: React.ComponentType): React.FunctionComponent => (props: any) => (
     <Component {...{ ...wrappedHook(props), ...props }} />
   );
 };
 
-export default decorator;
+export default useDecorator;

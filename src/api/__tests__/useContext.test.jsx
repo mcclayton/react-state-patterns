@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { renderProp } from '../renderProp';
+import { useContext } from '../context';
 import { mount } from 'enzyme';
 // Mock out wrapStateHook
 jest.mock('../../helpers', () => ({
@@ -14,7 +14,7 @@ beforeEach(() => {
   );
 });
 
-describe('renderProp', () => {
+describe('useContext', () => {
   const hook = (props) => {
     const [state, setState] = useState(props.initialState || {});
     return { state, setState };
@@ -22,22 +22,26 @@ describe('renderProp', () => {
 
   it('calls `wrapStateHook` on the hook', () => {
     wrapStateHook.mockImplementation((hook) => hook);
-    renderProp(hook);
+    useContext(hook);
     expect(wrapStateHook).toHaveBeenCalledWith(hook);
   });
 
-  it('creates component with render prop that passes down hook return value', (done) => {
+  it('creates Provider/Consumer that pass down hook return value', (done) => {
     const initialState = { foo: 'bar' };
-    const Component = renderProp(hook);
+    const { Provider, Consumer } = useContext(hook);
     mount(
-      <Component initialState={initialState}>
-        {({ state, setState }) => {
-          expect(state).toEqual(initialState);
-          expect(typeof setState).toBe('function');
-          done();
-          return <div />;
-        }}
-      </Component>
+      <Provider initialState={initialState}>
+        <div>
+          <Consumer>
+            {({ state, setState }) => {
+              expect(state).toEqual(initialState);
+              expect(typeof setState).toBe('function');
+              done();
+              return <div />;
+            }}
+          </Consumer>
+        </div>
+      </Provider>
     );
   });
 });

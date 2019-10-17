@@ -2,19 +2,19 @@
 
 ## Table of Contents
   - Main API
-    + [`statePatterns()`](#statePatterns)
-    + [`renderProp()`](#renderProp)
-    + [`decorator()`](#decorator)
-    + [`context()`](#context)
+    + [`useProviders()`](#useProviderss)
+    + [`useRenderProp()`](#useRenderProp)
+    + [`useDecorator()`](#useDecorator)
+    + [`useContext()`](#useContext)
   - Utils
     + [`hookSchema()`](#hookSchema)
-    + [`stateHook()`](#stateHook)
+    + [`useStateHook()`](#useStateHook)
 
 
 ## Main API
 
-### statePatterns
-`statePatterns` - _Creates an implementation of the state decorator, hook, render prop, and context provider/consumer patterns._
+### useProviders
+`useProviders` - _Creates an implementation of the state decorator, hook, render prop, and context provider/consumer patterns._
 
 ```javascript
 /**
@@ -26,8 +26,8 @@
  */
 ```
 
-### renderProp
-+ `renderProp` - _Creates an implementation of the state render prop provider pattern._
+### useRenderProp
++ `useRenderProp` - _Creates an implementation of the state render prop provider pattern._
 ```javascript
 /**
  * @param {Function} stateHook A custom React hook to manage state.
@@ -36,8 +36,8 @@
  */
 ```
 
-### decorator
-+ `decorator` -  _Creates an implementation of the state decorator provider pattern._
+### useDecorator
++ `useDecorator` -  _Creates an implementation of the state decorator provider pattern._
 ```javascript
 /**
  * @param {Function} stateHook A custom React hook to manage state.
@@ -47,8 +47,8 @@
  */
 ```
 
-### context
-+ `context` -  _Creates an implementation of the state Context Provider/Consumer pattern._
+### useContext
++ `useContext` -  _Creates an implementation of the state Context Provider/Consumer pattern._
 ```javascript
 /**
  * @param {Function} stateHook A custom React hook to manage state.
@@ -74,8 +74,8 @@
  */
 ```
 
-### stateHook
-+ `stateHook` - _Creates a custom React state hook that accepts props and returns an object of the form:_
+### useStateHook
++ `useStateHook` - _Creates a custom React state hook that accepts props and returns an object of the form:_
 `{ nameSpace: { handlers: {}, state: {} } } }`
 ```javascript
 /**
